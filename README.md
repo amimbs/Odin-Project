@@ -23,6 +23,7 @@
 - **IP Address** - *Internet Protocol Address* always 4 numbers seperated by dots that define the location of you computer.
   - **Domain Names** or **Domain Name Servers (DNS)** are the human readable aliases of IP Addresses. 
     - ![Image](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work/dns-ip.png)
+- Why isn't github tracking ym commits?
   
   <hr/>
 
