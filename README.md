@@ -23,9 +23,14 @@
 - **IP Address** - *Internet Protocol Address* always 4 numbers seperated by dots that define the location of you computer.
   - **Domain Names** or **Domain Name Servers (DNS)** are the human readable aliases of IP Addresses. 
     - ![Image](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work/dns-ip.png)
-- Why isn't github tracking ym commits?
   
   <hr/>
 
+  ## Linkining and Images
+  - Links to other pages on the internet are called absolute links.
+  - Links to other pages on your website are called relative links.
+    - **Relative Links** do include the domain name.
+    - They only include the file path of the other page, relative to the page you are creating the link on. 
+    - Prepending **./** before a link your are specifying to your code that it should start looking for the file/directory relative to the **current** directory
   
 
