@@ -5,17 +5,17 @@
 
 ## The Process
 1. **Under the code to the best of your ability**
-   1. Go thrugh line-by-line and understand each line to the best of your ability
+   1. Go through line-by-line and understand each line to the best of your ability
    2. Google unfamiliar concepts
-   3. Use a debugger to help you (see ![Debugger notes](Debugger.md))
+   3. Use a debugger to help you (see [Debugger notes](Debugger.md))
 2. **Clearly describe the problem**
    1. Explain the context
    2. Explain the exact steps you took to produce the problem.
    3. Explain what you expect to see.
    4. Explain what you actually see.
-3. **Provide the Code that ullustrates the problem**
+3. **Provide the Code that illustrates the problem**
    1. Isolate the issue
-   2. Make suire that the code doesn't change by the time someone looks at it.
+   2. Make sure that the code doesn't change by the time someone looks at it.
 4. **Make sure the code you're sharing can reproduce the problem**
    1. Take the code you're going to share, and make sure it behaves exactly like you described.
 5. **Format your code consistently**
@@ -23,9 +23,9 @@
 6. **Check yourself for typos**
    1. Nobody wants to look for your typos
    2. Go back to a point where the code worked and redo from there. Making sure your code continues to work each step of the way. If you get to a point where your code doesn't work. Check for typos.
-   3. Go back methodically and figure out where you messed up. Do not waste someone else's time and ask themto do somethin you should do yourself.
+   3. Go back methodically and figure out where you messed up. Do not waste someone else's time and ask them to do something you should do yourself.
 7. **Explain what you did to troubleshoot the problem**
-   1. Come up with a list of hypotheses about what the problem might be and then test them methodicaslly. For each hypothesis, explain what you did to test each
+   1. Come up with a list of hypotheses about what the problem might be and then test them methodically. For each hypothesis, explain what you did to test each
    2. During this process you might solve the problem yourself.
 8. **Explain what you think the problem might be**
    1. Based on your tests in the previous step, provide your best guess on what you think the problem might be,

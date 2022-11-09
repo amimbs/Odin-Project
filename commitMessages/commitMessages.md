@@ -9,7 +9,7 @@
   
 ## Conventional Commit
 - Conventional Commit is a great practice among engineering teams. Conventional Commit is a formatting convention that provides a set of rules to formulate a consistent commit message structure like so:
-![Commit Formatting](../../assets/commitFormat.png)
+![Commit Formatting](../assets/commitFormat.png)
 - The Commit Type can include:
   - `feat` – a new feature is introduced with the changes
   - `fix` – a bug fix has occurred
@@ -28,10 +28,21 @@
 - You can set VSCode as your default git editor by first installing the VSCode command-line interface and then execute the following command in your shell:
   `git config --global core.editor "code --wait"`
 - With VSCode set as your default git editor, whenever you execute git commit, VSCode will open up for you to type in your commit message. The commit message is saved once you've closed the VSCode tab. What is especially nice about this is that you can configure VSCode to set vertical rulers that can act as guides for the line length limits you wish to follow:
-![Vscode Commit](../../assets/vscodeCommit.png)
+![Vscode Commit](../assets/vscodeCommit.png)
 - To set these rulers, just add the following to the VSCode global **settings.json** file found in *Settings > User* or by running `Preferences: Open Workspace Settings (JSON)` command in the command palette (*Ctrl + Shift + P*):
 ```
 "[git-commit]": {
   "editor.rulers": [72, 80]
 }
+```
+### Full Conventional Commit Example
+```
+fix: fix foo to enable bar
+
+This fixes the broken behavior of the component by doing xyz. 
+
+BREAKING CHANGE
+Before this fix foo wasn't enabled at all, behavior changes from <old> to <new>
+
+Closes D2IQ-12345
 ```
