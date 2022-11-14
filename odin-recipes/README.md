@@ -23,9 +23,9 @@ Your new recipe page should have the following content:
 
 2. ~~Under the image, it should have an appropriately sized “Description” heading followed by a paragraph or two describing the recipe.~~
 
-3. Under the description, add an “Ingredients” heading followed by an **unordered list** of the ingredients needed for the recipe.
+3. ~~Under the description, add an “Ingredients” heading followed by an **unordered list** of the ingredients needed for the recipe.~~
 
-4. Finally, under the ingredients list, add a “Steps” heading followed by an **ordered list** of the steps needed for making the dish.
+4. ~~Finally, under the ingredients list, add a “Steps” heading followed by an **ordered list** of the steps needed for making the dish.~~
 
 ### Interation 4: Add More Recipes
 1. Add two more recipes with identical page structures to the recipe page you’ve already created.
