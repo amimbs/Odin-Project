@@ -28,8 +28,8 @@ Your new recipe page should have the following content:
 4. ~~Finally, under the ingredients list, add a “Steps” heading followed by an **ordered list** of the steps needed for making the dish.~~
 
 ### Interation 4: Add More Recipes
-1. Add two more recipes with identical page structures to the recipe page you’ve already created.
-2. Don’t forget to link to the new recipes on the index page. Also, consider putting all the links in an unordered list so they aren’t all on one line.
+1. ~~Add two more recipes with identical page structures to the recipe page you’ve already created.~~
+2. ~~Don’t forget to link to the new recipes on the index page. Also, consider putting all the links in an unordered list so they aren’t all on one line.~~
 Example:
 ```html
  <ul>
