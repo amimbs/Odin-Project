@@ -42,5 +42,79 @@
   - It's is good practice to commit every time you have a meaningful change in the code. Creating a timeline of your progress.
   - This means, make a commit if you get a piece of code you are working on to function like you want it to, fix a typo, or fix a bug. As you gain experience, you will develop a better feel for what should be committed!
   - See the doc on [good commit messages](./commitMessages/commitMessages.md).
-
   
+<hr>
+
+## CSS Foundations
+- *Imagine I wrote lots of notes about basic CSS stuff here*
+  ### Class Selectors
+    - Note syntax for class selectors: a period immediately followed by the case-sensitive value of the class attribute. Classes aren't required to be unique, sso you can use the same class on as many elements as you want.
+    - Another thing you can do with the class attibute is add multiple classes to a single element as a space-seperated list, such as `class="alert-text severe-alert"`. Since whitespace is used to seperate class names like this, you should never use spaces for milti-worded names and should use a hyphen instead.
+  ### ID Selectors
+    - *You already know about these, Andy*
+    - The major difference between classes and IDs is that an element can only have **one** ID. An ID cannout be repeated on a single page, and the ID attribute should not contain any whitespace at all. 
+  ### Group Selector
+    - What if we have two groups of elements that share some of their style declarations?
+      ```CSS
+      .read {
+        color: white;
+        background-color: black;
+        /* several unique declarations */
+      }
+      .unread {
+        color: white;
+        background-color: black;
+        /* several unique declarations */
+      }
+      ```
+    - Both our `.read` and `.unread` selectors share the `color: white;` and `background-color: black;` declarations, but otherwise have several of their own unique declaraions. To cut down on the repetition, we can group these two selectors together as a comma-seperated list: 
+      ```CSS
+      .read,
+      .unread {
+        color: white;
+        background-color: black;
+      }
+
+      .read {
+        /* several unique declarations */
+      }
+
+      .unread {
+        /* several unique declarations */
+      }
+      ```
+    - Both of the examples above (with and without grouping) will have the same result, but the second example reduces the repetition of declarations and makes it easier to edit either the `color` or `background-color` for both classes at once. 
+  ### Chaining Selectors
+    - Another way to use selectors is to chain them as a list without any separation. Let’s say we had the following HTML:
+      ```html
+      <div>
+        <div class="subsection header">Latest Posts</div>
+        <p class="subsection preview">This is where a preview for a post might go.</p>
+      </div>
+      ```
+    - We have two elements with the `subsection` class that have some sort of unique styles, but what if we only want to apply a separate rule to the element that also has `header` as a second class? Well, we could chain both the class selectors together in our CSS like so:
+      ```css
+      .subsection.header {
+        color: red;
+      }
+      ```
+    - What `.subsection.header` does is it selects any element that has both the `subsection` *and* `header` classes. Notice how there isn’t any space between the .`subsection` and .`header` class selectors. This syntax basically works for chaining any combination of selectors, except for chaining more than one [type selector](https://www.theodinproject.com/lessons/foundations-css-foundations#type-selectors).
+    - This can also be used to chain a class and an ID, as shown below:
+      ```html
+      <div>
+        <div class="subsection header">Latest Posts</div>
+        <p class="subsection" id="preview">This is where a preview for a post might go.</p>
+      </div>
+      ```
+    - You can take the two elements above and combine them with the following:
+      ```css
+      .subsection.header {
+        color: red;
+      }
+
+      .subsection#preview {
+        color: blue;
+      }
+      ```
+    - In general, you can’t chain more than one type selector since an element can’t be two different types at once. For example, chaining two type selectors like `div` and `p` would give us the selector `divp`, which wouldn’t work since the selector would try to find a literal `<divp>` element, which doesn’t exist.
+        
