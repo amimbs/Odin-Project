@@ -117,4 +117,27 @@
       }
       ```
     - In general, you can’t chain more than one type selector since an element can’t be two different types at once. For example, chaining two type selectors like `div` and `p` would give us the selector `divp`, which wouldn’t work since the selector would try to find a literal `<divp>` element, which doesn’t exist.
-        
+  ### Descendant Combinator
+    - Combinators allow us to combine multiple selectors differently than either grouping or chanining them, as the show a relationship between the selectors. **Descendant Combinator** is represented in CSS by a single space between selectors. A descendant combinator will only cause elements that match the last selector to be selected if they also have ancestor that matches the previous selector.
+    - An examples is ` .ancestor .child` whith only select `.child` if it is nested within `.ancestor` regardless of how deep. Refer to below:
+    ```html
+    <!-- index.html -->
+    <div class="ancestor"> <!-- A -->
+      <div class="contents"> <!-- B -->
+        <div class="contents"> <!-- C -->
+        </div>
+      </div>
+    </div>
+
+    <div class="contents"></div> <!-- D -->
+    ```
+
+    ```css
+      /* styles.css */
+      /*this descendant combinator will only select lines B & C*/
+      .ancestor .contents {
+        /* some declarations */
+      }
+    ```
+
+    - There’s really no limit to how many combinators you can add to a rule, so `.one .two .three .four` would be totally valid. This would just select an element that has a class of `four` if it has an ancestor with a class of `three`, and if that ancestor has its own ancestor with a class of `two`, and so on. You generally want to avoid trying to select elements that need this level of nesting, though, as it can get pretty confusing and long, and it can cause issues when it comes to specificity.
