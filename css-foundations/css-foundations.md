@@ -208,4 +208,26 @@
   }
   ```
   - In this example, rule 2 would have higher specificity and the `orange` value would take precedence for this element. Rule 2 uses a type selector, which has the lowest specificity value. But rule 1 uses the universal selector (`*`) which has no specificity value.
-  ### [Inheritance](https://www.theodinproject.com/lessons/foundations-css-foundations#:~:text=no%20specificity%20value.-,Inheritance,-Inheritance%20refers%20to)
+  ### Inheritance
+  - Inheritance refers to certain CSS properties that, when applied to an element are inherited by that element's descendants, even if we don't explicitly write a rule for those descendants. Typography based properties (`color`, `font-size`, `font-family`, `etc`.) are usually inherited, while most other properties aren’t.
+  - The exception to this s when directl targeting an element, as this always beats inheritance:
+  ```html
+  <!-- index.html -->
+
+  <div id="parent">
+    <div class="child"></div>
+  </div>
+  ```
+
+  ```css
+  /* styles.css */
+
+  #parent {
+    color: red;
+  }
+
+  .child {
+    color: blue;
+  }
+  ```
+- Despite the `parent` element having a higher specificity with an ID, the child element would have the `color: blue` style applied since that declaration directly targets it, while `color: red` from the parent is only inherited.
