@@ -9,80 +9,80 @@
   ### Group Selector
     - What if we have two groups of elements that share some of their style declarations?
       ```CSS
-      .read {
-        color: white;
-        background-color: black;
-        /* several unique declarations */
-      }
-      .unread {
-        color: white;
-        background-color: black;
-        /* several unique declarations */
-      }
+        .read {
+          color: white;
+          background-color: black;
+          /* several unique declarations */
+        }
+        .unread {
+          color: white;
+          background-color: black;
+          /* several unique declarations */
+        }
       ```
     - Both our `.read` and `.unread` selectors share the `color: white;` and `background-color: black;` declarations, but otherwise have several of their own unique declaraions. To cut down on the repetition, we can group these two selectors together as a comma-seperated list: 
       ```CSS
-      .read,
-      .unread {
-        color: white;
-        background-color: black;
-      }
+        .read,
+        .unread {
+          color: white;
+          background-color: black;
+        }
 
-      .read {
-        /* several unique declarations */
-      }
+        .read {
+          /* several unique declarations */
+        }
 
-      .unread {
-        /* several unique declarations */
-      }
+        .unread {
+          /* several unique declarations */
+        }
       ```
     - Both of the examples above (with and without grouping) will have the same result, but the second example reduces the repetition of declarations and makes it easier to edit either the `color` or `background-color` for both classes at once. 
   ### Chaining Selectors
     - Another way to use selectors is to chain them as a list without any separation. Let’s say we had the following HTML:
       ```html
-      <div>
-        <div class="subsection header">Latest Posts</div>
-        <p class="subsection preview">This is where a preview for a post might go.</p>
-      </div>
+        <div>
+          <div class="subsection header">Latest Posts</div>
+          <p class="subsection preview">This is where a preview for a post might go.</p>
+        </div>
       ```
     - We have two elements with the `subsection` class that have some sort of unique styles, but what if we only want to apply a separate rule to the element that also has `header` as a second class? Well, we could chain both the class selectors together in our CSS like so:
       ```css
-      .subsection.header {
-        color: red;
-      }
+        .subsection.header {
+          color: red;
+        }
       ```
     - What `.subsection.header` does is it selects any element that has both the `subsection` *and* `header` classes. Notice how there isn’t any space between the .`subsection` and .`header` class selectors. This syntax basically works for chaining any combination of selectors, except for chaining more than one [type selector](https://www.theodinproject.com/lessons/foundations-css-foundations#type-selectors).
     - This can also be used to chain a class and an ID, as shown below:
       ```html
-      <div>
-        <div class="subsection header">Latest Posts</div>
-        <p class="subsection" id="preview">This is where a preview for a post might go.</p>
-      </div>
+        <div>
+          <div class="subsection header">Latest Posts</div>
+          <p class="subsection" id="preview">This is where a preview for a post might go.</p>
+        </div>
       ```
     - You can take the two elements above and combine them with the following:
       ```css
-      .subsection.header {
-        color: red;
-      }
+        .subsection.header {
+          color: red;
+        }
 
-      .subsection#preview {
-        color: blue;
-      }
+        .subsection#preview {
+          color: blue;
+        }
       ```
     - In general, you can’t chain more than one type selector since an element can’t be two different types at once. For example, chaining two type selectors like `div` and `p` would give us the selector `divp`, which wouldn’t work since the selector would try to find a literal `<divp>` element, which doesn’t exist.
   ### Descendant Combinator
     - Combinators allow us to combine multiple selectors differently than either grouping or chanining them, as the show a relationship between the selectors. **Descendant Combinator** is represented in CSS by a single space between selectors. A descendant combinator will only cause elements that match the last selector to be selected if they also have ancestor that matches the previous selector.
     - An examples is ` .ancestor .child` whith only select `.child` if it is nested within `.ancestor` regardless of how deep. Refer to below:
     ```html
-    <!-- index.html -->
-    <div class="ancestor"> <!-- A -->
-      <div class="contents"> <!-- B -->
-        <div class="contents"> <!-- C -->
+      <!-- index.html -->
+      <div class="ancestor"> <!-- A -->
+        <div class="contents"> <!-- B -->
+          <div class="contents"> <!-- C -->
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="contents"></div> <!-- D -->
+      <div class="contents"></div> <!-- D -->
     ```
 
     ```css
@@ -101,10 +101,10 @@
 
     - By default, an `<img>` element’s `height` and `width` values will be the same as the actual image file’s height and width. If you wanted to adjust the size of the image without causing it to lose its proportions, you would use a value of “auto” for the `height` property and adjust the `width` value:
     ```css
-    img {
-      height: auto;
-      width: 500px;
-    }
+      img {
+        height: auto;
+        width: 500px;
+      }
     ```
     - It’s best to include both of these properties for `<img>` elements, even if you don’t plan on adjusting the values from the image file’s original ones. When these values aren’t included, if an image takes longer to load than the rest of the page contents, the image won’t take up any space on the page at first, but will suddenly cause a drastic shift of the other page contents once it does load in. Explicitly stating a `height` and `width` prevents this from happening, as space will be “reserved” on the page and will just appear as a blank space until the image loads.
 
@@ -118,116 +118,132 @@
     3. Type selectors
   - Let's look at and example:
   ```html
-  <!-- index.html -->
+    <!-- index.html -->
 
-  <div class="main">
-    <div class="list subsection"></div>
-  </div>
+    <div class="main">
+      <div class="list subsection"></div>
+    </div>
   ```
   ```css
-  /* rule 1 */
-  .subsection {
-    color: blue;
-  }
+    /* rule 1 */
+    .subsection {
+      color: blue;
+    }
 
-  /* rule 2 */
-  .main .list {
-    color: red;
-  }
+    /* rule 2 */
+    .main .list {
+      color: red;
+    }
   ```
   - In the example above, both rules are using only class selectors, but rule 2 is more specific because it is using more class selectors., so the `color: red;` declaration would take precedent. 
   - Let's look at another example:
   ```html
-  <!-- index.html -->
+    <!-- index.html -->
 
-  <div class="main">
-    <div class="list" id="subsection"></div>
-  </div>
+    <div class="main">
+      <div class="list" id="subsection"></div>
+    </div>
   ```
   ```css
-  /* rule 1 */
-  #subsection {
-    color: blue;
-  }
+    /* rule 1 */
+    #subsection {
+      color: blue;
+    }
 
-  /* rule 2 */
-  .main .list {
-    color: red;
-  }
+    /* rule 2 */
+    .main .list {
+      color: red;
+    }
   ```
   - In the example above, despite rule 2 having ore class selectors than an ID selector, rule 1 is more specific because ID beats class. In this case `color: blue;` declaration would take precedence
   - One last example:
   ```css
-  /* rule 1 */
-  #subsection .list {
-    background-color: yellow;
-    color: blue;
-  }
+    /* rule 1 */
+    #subsection .list {
+      background-color: yellow;
+      color: blue;
+    }
 
-  /* rule 2 */
-  #subsection .main .list {
-    color: red;
-  }
+    /* rule 2 */
+    #subsection .main .list {
+      color: red;
+    }
   ```
   - In this final example, both rules are using ID and class selectors, so neither rule is using a more specific selector than the other. The cascade then checks the amounts of each selector type. Both rules only have one ID selector, but rule 2 has more class selectors, so rule 2 has a higher specificity!
   - While the color: red declaration would take precedence, the background-color: yellow declaration would still be applied since there’s no conflicting declaration for it.
   - Note: When comparing selectors, you may come across special symbols for the universal selector (*) as well as combinators (`+`, `~`, `>`, and an empty space). These symbols do not add any specificity in and of themselves.
   ```css
-  /* rule 1 */
-  .class.second-class {
-    font-size: 12px;
-  }
+    /* rule 1 */
+    .class.second-class {
+      font-size: 12px;
+    }
 
-  /* rule 2 */
-  .class .second-class {
-    font-size: 24px;
-  }
+    /* rule 2 */
+    .class .second-class {
+      font-size: 24px;
+    }
   ```
   - Here both rule 1 and rule 2 have the same specificity. Rule 1 uses a chaining selector (no space) and rule 2 uses a descendant combinator (the empty space). But both rules have two classes and the combinator symbol itself does not add to the specificity.
   ```css
-  /* rule 1 */
-  .class.second-class {
-    font-size: 12px;
-  }
+    /* rule 1 */
+    .class.second-class {
+      font-size: 12px;
+    }
 
-  /* rule 2 */
-  .class > .second-class {
-    font-size: 24px;
-  }
+    /* rule 2 */
+    .class > .second-class {
+      font-size: 24px;
+    }
   ```
   - This example shows the same thing. Even though rule 2 is using a child combinator (`>`), this does not change the specificity value. Both rules still have two classes so they have the same specificity values.
   ```css
-  /* rule 1 */
-  * {
-    color: black;
-  }
+    /* rule 1 */
+    * {
+      color: black;
+    }
 
-  /* rule 2 */
-  h1 {
-    color: orange;
-  }
+    /* rule 2 */
+    h1 {
+      color: orange;
+    }
   ```
   - In this example, rule 2 would have higher specificity and the `orange` value would take precedence for this element. Rule 2 uses a type selector, which has the lowest specificity value. But rule 1 uses the universal selector (`*`) which has no specificity value.
   ### Inheritance
   - Inheritance refers to certain CSS properties that, when applied to an element are inherited by that element's descendants, even if we don't explicitly write a rule for those descendants. Typography based properties (`color`, `font-size`, `font-family`, `etc`.) are usually inherited, while most other properties aren’t.
   - The exception to this s when directl targeting an element, as this always beats inheritance:
   ```html
-  <!-- index.html -->
+    <!-- index.html -->
 
-  <div id="parent">
-    <div class="child"></div>
-  </div>
+    <div id="parent">
+      <div class="child"></div>
+    </div>
   ```
 
   ```css
+    /* styles.css */
+
+    #parent {
+      color: red;
+    }
+
+    .child {
+      color: blue;
+    }
+  ```
+- Despite the `parent` element having a higher specificity with an ID, the child element would have the `color: blue` style applied since that declaration directly targets it, while `color: red` from the parent is only inherited.
+### Rule Order
+- The final factor, the end of the line, the tie-breaker of the tie-breaker. Let’s say that after every other factor has been taken into account, there are still multiple conflicting rules targeting an element. How does the cascade determine which rule to apply?
+
+- Really simply, actually. Whichever rule was the last defined is the winner.
+```css
   /* styles.css */
 
-  #parent {
+  .alert {
     color: red;
   }
 
-  .child {
-    color: blue;
+  .warning {
+    color: yellow;
   }
-  ```
-- Despite the `parent` element having a higher specificity with an ID, the child element would have the `color: blue` style applied since that declaration directly targets it, while `color: red` from the parent is only inherited.
+```
+- For an element that has both the `alert` and `warning` classes, the cascade would run through every other factor, including inheritance (none here) and specificity (neither rule is more specific than the other). Since the .`warning` rule was the last one defined, and no other factor was able to determine which rule to apply, it’s the one that gets applied to the element.
