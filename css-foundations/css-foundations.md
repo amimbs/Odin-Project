@@ -230,20 +230,47 @@
       color: blue;
     }
   ```
-- Despite the `parent` element having a higher specificity with an ID, the child element would have the `color: blue` style applied since that declaration directly targets it, while `color: red` from the parent is only inherited.
-### Rule Order
-- The final factor, the end of the line, the tie-breaker of the tie-breaker. Let’s say that after every other factor has been taken into account, there are still multiple conflicting rules targeting an element. How does the cascade determine which rule to apply?
+  - Despite the `parent` element having a higher specificity with an ID, the child element would have the `color: blue` style applied since that declaration directly targets it, while `color: red` from the parent is only inherited.
+  ### Rule Order
+  - The final factor, the end of the line, the tie-breaker of the tie-breaker. Let’s say that after every other factor has been taken into account, there are still multiple conflicting rules targeting an element. How does the cascade determine which rule to apply?
 
-- Really simply, actually. Whichever rule was the last defined is the winner.
-```css
-  /* styles.css */
+  - Really simply, actually. Whichever rule was the last defined is the winner.
+  ```css
+    /* styles.css */
 
-  .alert {
-    color: red;
-  }
+    .alert {
+      color: red;
+    }
 
-  .warning {
-    color: yellow;
-  }
-```
-- For an element that has both the `alert` and `warning` classes, the cascade would run through every other factor, including inheritance (none here) and specificity (neither rule is more specific than the other). Since the .`warning` rule was the last one defined, and no other factor was able to determine which rule to apply, it’s the one that gets applied to the element.
+    .warning {
+      color: yellow;
+    }
+  ```
+  - For an element that has both the `alert` and `warning` classes, the cascade would run through every other factor, including inheritance (none here) and specificity (neither rule is more specific than the other). Since the .`warning` rule was the last one defined, and no other factor was able to determine which rule to apply, it’s the one that gets applied to the element.
+
+## Adding CSS to HTML
+  ### External CSS
+  - External CSS is the most common method you will come across, and it involves creating a seperate file for the CSS and linking it inside of an HTML's opening and close `<head>` tags with a self-closing `<link>` element:
+  ```html
+    <!-- index.html -->
+
+    <head>
+      <link rel="stylesheet" href="styles.css">
+    </head>
+  ```
+  ```css
+    /* styles.css */
+
+    div {
+      color: white;
+      background-color: black;
+    }
+
+    p {
+      color: red;
+    }
+  ```
+  - A couple of the pros to this method are:
+
+  1. It keeps our HTML and CSS separated, which results in the HTML file being smaller and making things look cleaner.
+  2. We only need to edit the CSS in one place, which is especially handy for websites with many pages that all share similar styles.
