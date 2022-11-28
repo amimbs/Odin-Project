@@ -277,5 +277,36 @@
 
     1. It keeps our HTML and CSS separated, which results in the HTML file being smaller and making things look cleaner.
     2. We only need to edit the CSS in one place, which is especially handy for websites with many pages that all share similar styles.
-  ### [Internal CSS](https://www.theodinproject.com/lessons/foundations-css-foundations#:~:text=A%20couple%20of%20the%20pros%20to%20this%20method%20are%3A)
+    3. 
+  ### Internal CSS
+  - Internal CSS (or embedded CSS) involveds adding the CSS within the HTML file itself instead of creating a completely seperate file.
+  ```html
+  <head>
+    <style>
+      div {
+        color: white;
+        background-color: black;
+      }
+
+      p {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>...</body>
+  ```
+  - This method can be useful for adding unique styles to a single page of a website, but it doesn’t keep things separate like the external method, and depending on how many rules and declarations there are it can cause the HTML file to get pretty big.
+  
+  ### Inline CSS
+  - Inline CSS makes it possible to add styles directly to HTML elements, though this method isn't as recommened:
+  ```html
+  <body>
+    <div style="color: white; background-color: black;">...</div>
+  </body>
+  ```
+  - God, Andy, please don't use this method. Exception being ONLY you need literally a single element to have a specific and unique style.
+  - It can quickly become pretty messy once you start adding a lot of declarations to a single element, causing your HTML file to become unnecessarily bloated.
+  - If you want many elements to have the same style, you would have to copy + paste the same style to each individual element, causing lots of unnecessary repetition and more bloat.
+  - Any inline CSS will override the other two methods, which can cause unexpected results. (While we won’t dive into it here, this can actually be taken advantage of).
+
     
