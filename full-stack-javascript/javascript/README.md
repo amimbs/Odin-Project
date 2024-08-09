@@ -2,6 +2,7 @@
 1. [Objects and Object Constructors](#objects-and-Object-constructors)
     - [Object Literals](#object-literals)
     - [Object Constructor](#object-constructor)
+    - [Exercise](#exercise)
 
 
 <hr/><hr/>
@@ -81,6 +82,27 @@ player1.sayName(); // logs 'steve'
 player2.sayName(); // logs 'also steve'
 ```
 
+### Exercise
+
+`Write a constructor for making “Book” objects. We will revisit this in the project at the end of this lesson. Your book objects should have the book’s title, author, the number of pages, and whether or not you have read the book. Put a function into the constructor. See book-exercise.ts`
+
+### The Prototype
+
+Definition:
+
+    All objects in Javascript have a `prototype`. The `prototype` is another object that the original object inherits from, which is to say, the original object has access to all of its `prototype's` methods an properties.
 
 
+- Let's try out prototypes by getting the prototype of our player objects from earlier in the browser's dev console. 
+  - be sure you create the play1 and play2 objects before!
+
+  ![dev console screen shot of Object.getPrototypeOf()](../../assets/getPrototypeOf.png)
+
+- …that the original object inherits from, and has access to all of its prototype’s methods and properties:
+  - As said in the earlier point, every Player object has a value which refers to Player.prototype. So: Object.getPrototypeOf(player1) === Object.getPrototypeOf(player2) (returns true).
+  - So, any properties or methods defined on Player.prototype will be available to the created Player objects!
+- Here's a cool summary of prototypal inheritance:
+  - Is the `.valueOf` function part of the `player1` object? No, it is not. (Remember, only the `name`, `marker` and `sayName` properties are part of the `Player` objects.)
+  - Is the function part of the `player1’s` prototype (the `Object.getPrototypeOf(player1)` value, i.e., `Player.prototype`)? No, only the `.sayHello` function is a part of it.
+  - Well, then, is it part of `Object.getPrototypeOf(Player.prototype)` (=== `Object.prototype`)? Yes, `.valueOf` is defined on `Object.prototype`!
 <hr/>
