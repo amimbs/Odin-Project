@@ -1,8 +1,10 @@
 # Table of Contents
-1. [Objects and Object Constructors](#objects-and-Object-constructors)
+1.  Organizing Your Javascript Code
+    - [Objects and Object Constructors](#objects-and-Object-constructors)
     - [Object Literals](#object-literals)
     - [Object Constructor](#object-constructor)
     - [Exercise](#exercise)
+    - [Project: Library](#project-library)
 
 
 <hr/><hr/>
@@ -105,4 +107,19 @@ Definition:
   - Is the `.valueOf` function part of the `player1` object? No, it is not. (Remember, only the `name`, `marker` and `sayName` properties are part of the `Player` objects.)
   - Is the function part of the `player1’s` prototype (the `Object.getPrototypeOf(player1)` value, i.e., `Player.prototype`)? No, only the `.sayHello` function is a part of it.
   - Well, then, is it part of `Object.getPrototypeOf(Player.prototype)` (=== `Object.prototype`)? Yes, `.valueOf` is defined on `Object.prototype`!
+
+### Project Library
+
+- Let’s extend the ‘Book’ example from the previous lesson and turn it into a small Library app.
+
+  - ✅ This assignment requires HTML, CSS and JS
+  - All book objects will be stores in an array with a function that takes the user's input and pushes to the array for display.
+  - Write a function that loops through the array and displays each book on the pages. Perhaps display them in cards or in a table. Add a few books manually in the array to start
+  - Add a “NEW BOOK” button that brings up a form allowing users to input the details for the new book: author, title, number of pages, whether it’s been read and anything else you might want. How you decide to display this form is up to you. For example, you may wish to have a form show in a sidebar or you may wish to explore dialogs and modals using the `<dialog>` tag. However you do this, you will most likely encounter an issue where submitting your form will not do what you expect it to do. That’s because the submit input tries to send the data to a server by default. This is where event.preventDefault(); will come in handy. Check out the documentation for event.preventDefault and see how you can solve this issue!
+  - Add a button on each book’s display to remove the book from the library.
+  You will need to associate your DOM elements with the actual book objects in some way. 
+    - One easy solution is giving them a data-attribute that corresponds to the index of the library array.
+  - Add a button on each book’s display to change its read status.
+    - To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance.
+
 <hr/>
