@@ -1,5 +1,5 @@
 class Book {
-    constructor(title, author, pages, read) {
+    constructor(title = '', author = '', pages = 0, read = false) {
         this.title = title;
         this.author = author;
         this.pages = pages;
@@ -10,6 +10,16 @@ class Book {
 class Library {
     constructor(books) {
         this.books = books;
+    }
+
+    addBook(newBook) {
+        if (!this.isInLibrary(newBook)) {
+            this.books.push(newBook)
+        }
+    }
+
+    isInLibrary(newBook) {
+        return this.books.some((book) => book.title === newBook.title)
     }
 }
 
@@ -37,7 +47,11 @@ const dummyBooks = [
     new Book('Don Quixote', 'Miguel de Cervantes', 1072, false)
 ]
 
-const myLibrary  = new Library(dummyBooks);
+// let books = [];
+
+// let book = {};
+
+const myLibrary  = new Library();
 
 function displayLibrary() {
     let libraryContainer = document.getElementById('library-container');
@@ -62,4 +76,4 @@ function openForm() {
 
 function closeForm() {
     document.getElementById("newBook-Form").style.display = "none";
-  }
+}
