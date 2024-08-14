@@ -7,7 +7,7 @@ class Book {
     }
 }
 
-class Libaray {
+class Library {
     constructor(books) {
         this.books = books;
     }
@@ -37,7 +37,7 @@ const dummyBooks = [
     new Book('Don Quixote', 'Miguel de Cervantes', 1072, false)
 ]
 
-const myLibrary  = new Libaray(dummyBooks);
+const myLibrary  = new Library(dummyBooks);
 
 function displayLibrary() {
     let libraryContainer = document.getElementById('library-container');

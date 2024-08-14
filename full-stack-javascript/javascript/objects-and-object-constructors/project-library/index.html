@@ -15,19 +15,21 @@
   </header>
 
   <main>
-    <section class="center">
-      <h2>
-        Click the button to begin adding to your library
-      </h2>
+    <div class="absolute">
+      <section class="center">
+        <h2>
+          Click the button to begin adding to your library
+        </h2>
+  
+        <button class="newBook-button" onclick="openForm()">New Book</button>
+      </section>
+  
+      <section class="center">
+        <div id="library-container" class="library-container"></div>
+      </section>
+    </div>
 
-      <button class="newBook-button" onclick="displayLibrary()">New Book</button>
-    </section>
-
-    <section class="center">
-      <div id="library-container" class="library-container"></div>
-    </section>
-
-    <div class="form-popup" id="newBook-Form">
+    <div class="form-popup overlay" id="newBook-Form">
       <form class="form-container">
         <h1>Add New Book</h1>
     
