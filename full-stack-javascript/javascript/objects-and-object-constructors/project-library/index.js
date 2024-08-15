@@ -1,5 +1,5 @@
 class Book {
-    constructor(title = '', author = '', pages = 0, read = false) {
+    constructor(title = '', author = '', pages = '', read = '') {
         this.title = title;
         this.author = author;
         this.pages = pages;
@@ -8,7 +8,7 @@ class Book {
 }
 
 class Library {
-    constructor(books) {
+    constructor(books = []) {
         this.books = books;
     }
 
@@ -24,39 +24,78 @@ class Library {
 }
 
 // seeder data 
-const dummyBooks = [
-    new Book('To Kill a Mockingbird', 'Harper Lee', 281, true),
-    new Book('1984', 'George Orwell', 328, false),
-    new Book('The Great Gatsby', 'F. Scott Fitzgerald', 180, true),
-    new Book('The Catcher in the Rye', 'J.D. Salinger', 214, false),
-    new Book('Pride and Prejudice', 'Jane Austen', 279, true),
-    new Book('The Lord of the Rings', 'J.R.R. Tolkien', 1178, false),
-    new Book('The Hobbit', 'J.R.R. Tolkien', 295, true),
-    new Book('Moby-Dick', 'Herman Melville', 635, false),
-    new Book('War and Peace', 'Leo Tolstoy', 1225, true),
-    new Book('Crime and Punishment', 'Fyodor Dostoevsky', 671, false),
-    new Book('The Brothers Karamazov', 'Fyodor Dostoevsky', 824, true),
-    new Book('Brave New World', 'Aldous Huxley', 268, false),
-    new Book('Jane Eyre', 'Charlotte Brontë', 507, true),
-    new Book('Wuthering Heights', 'Emily Brontë', 416, false),
-    new Book('The Odyssey', 'Homer', 541, true),
-    new Book('The Iliad', 'Homer', 704, false),
-    new Book('The Divine Comedy', 'Dante Alighieri', 798, true),
-    new Book('Ulysses', 'James Joyce', 730, false),
-    new Book('Madame Bovary', 'Gustave Flaubert', 327, true),
-    new Book('Don Quixote', 'Miguel de Cervantes', 1072, false)
-]
+// const dummyBooks = [
+//     new Book('To Kill a Mockingbird', 'Harper Lee', 281, true),
+//     new Book('1984', 'George Orwell', 328, false),
+//     new Book('The Great Gatsby', 'F. Scott Fitzgerald', 180, true),
+//     new Book('The Catcher in the Rye', 'J.D. Salinger', 214, false),
+//     new Book('Pride and Prejudice', 'Jane Austen', 279, true),
+//     new Book('The Lord of the Rings', 'J.R.R. Tolkien', 1178, false),
+//     new Book('The Hobbit', 'J.R.R. Tolkien', 295, true),
+//     new Book('Moby-Dick', 'Herman Melville', 635, false),
+//     new Book('War and Peace', 'Leo Tolstoy', 1225, true),
+//     new Book('Crime and Punishment', 'Fyodor Dostoevsky', 671, false),
+//     new Book('The Brothers Karamazov', 'Fyodor Dostoevsky', 824, true),
+//     new Book('Brave New World', 'Aldous Huxley', 268, false),
+//     new Book('Jane Eyre', 'Charlotte Brontë', 507, true),
+//     new Book('Wuthering Heights', 'Emily Brontë', 416, false),
+//     new Book('The Odyssey', 'Homer', 541, true),
+//     new Book('The Iliad', 'Homer', 704, false),
+//     new Book('The Divine Comedy', 'Dante Alighieri', 798, true),
+//     new Book('Ulysses', 'James Joyce', 730, false),
+//     new Book('Madame Bovary', 'Gustave Flaubert', 327, true),
+//     new Book('Don Quixote', 'Miguel de Cervantes', 1072, false)
+// ]
 
-// let books = [];
+const userLibrary  = new Library();
+const formModal = document.getElementById("newBook-modal");
+const formOverlay = document.getElementById("overlay");
+const addForm = document.getElementById("newBook-Form");
+const libraryContainer = document.getElementById('library-container');
 
-// let book = {};
+function openAddModal() {
+    addForm.reset();
+    formModal.classList.add('active');
+    formOverlay.classList.add('active');
 
-const myLibrary  = new Library();
+}
+
+function closeAddModal() {
+    formModal.classList.remove('active');
+    formOverlay.classList.remove('active');
+}
+
+function getUserBook() {
+    const title = addForm.elements.title.value
+    const author = addForm.elements.author.value
+    const pages = addForm.elements.pageCount.value
+    const read = addForm.elements.read.value
+    return new Book(title, author, pages, read)
+}
+
+function addBook(event) {
+    event.preventDefault();
+    const newBook = getUserBook();
+
+    if (userLibrary.isInLibrary(newBook)) {
+        alert("This book is already in your library!");
+        return;
+    } else {
+        userLibrary.addBook(newBook);
+        displayLibrary();
+        closeAddModal();
+    }
+}
+
+function resetLibraryContainer() {
+    libraryContainer.innerHTML = '';
+}
+
 
 function displayLibrary() {
-    let libraryContainer = document.getElementById('library-container');
-    
-    myLibrary.books.forEach((book) => {
+    resetLibraryContainer();
+
+    userLibrary.books.forEach((book) => {
         const bookCard = document.createElement('div');
         bookCard.classList.add('book-card');
         bookCard.innerHTML += `
@@ -68,12 +107,4 @@ function displayLibrary() {
         `
         libraryContainer.appendChild(bookCard);
     })
-}
-
-function openForm() {
-    document.getElementById("newBook-Form").style.display = "block";
-}
-
-function closeForm() {
-    document.getElementById("newBook-Form").style.display = "none";
 }
