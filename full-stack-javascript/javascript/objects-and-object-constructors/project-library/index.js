@@ -18,6 +18,10 @@ class Library {
         }
     }
 
+    removeBook(title) {
+        this.books = this.books.filter((book) => book.title !== title);
+    }
+
     isInLibrary(newBook) {
         return this.books.some((book) => book.title === newBook.title)
     }
@@ -41,11 +45,11 @@ function closeAddModal() {
 }
 
 function getUserBook() {
-    const title = addForm.elements.title.value
-    const author = addForm.elements.author.value
-    const pageCount = addForm.elements.pageCount.value
-    const isRead = addForm.elements.isRead.checked
-    return new Book(title, author, pageCount, isRead)
+    const title = addForm.elements.title.value;
+    const author = addForm.elements.author.value;
+    const pageCount = addForm.elements.pageCount.value;
+    const isRead = addForm.elements.isRead.checked;
+    return new Book(title, author, pageCount, isRead);
 }
 
 function addBook(event) {
@@ -80,16 +84,21 @@ function displayLibrary() {
         const checkBox = document.createElement('input');
         checkBox.type = 'checkbox';
         checkBox.disabled = true;
+        const deleteButton = document.createElement('button');
 
         title.textContent = book.title;
         author.textContent = book.author;
         pageCount.textContent = book.pageCount;
         checkBox.checked = book.isRead;
+        deleteButton.textContent = 'Delete Book';
+
+        deleteButton.onclick = handleDeleteBook;
 
         bookCard.appendChild(title);
         bookCard.appendChild(author);
         bookCard.appendChild(pageCount);
         bookCard.appendChild(checkBox);
+        bookCard.appendChild(deleteButton);
 
         libraryContainer.appendChild(bookCard);        
     })
@@ -108,9 +117,15 @@ function loadFromLocal() {
      return;
 }
 
-// function deleteBook() {
+function handleDeleteBook(event) {
+    const button = event.target;
+    const bookCard = button.parentElement;
+    const title = (bookCard.querySelector('h2').innerHTML)
 
-// }
+    userLibrary.removeBook(title);
+    saveToLocal();
+    displayLibrary();
+}
 
 window.addEventListener('load', () => {
     displayLibrary();
