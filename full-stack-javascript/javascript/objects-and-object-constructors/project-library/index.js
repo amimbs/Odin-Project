@@ -1,8 +1,8 @@
 class Book {
-    constructor(title = '', author = '', pages = '', isRead = false) {
+    constructor(title = '', author = '', pageCount = 0, isRead = false) {
         this.title = title;
         this.author = author;
-        this.pages = pages;
+        this.pageCount = pageCount;
         this.isRead = isRead;
     }
 }
@@ -43,9 +43,9 @@ function closeAddModal() {
 function getUserBook() {
     const title = addForm.elements.title.value
     const author = addForm.elements.author.value
-    const pages = addForm.elements.pageCount.value
+    const pageCount = addForm.elements.pageCount.value
     const isRead = addForm.elements.isRead.checked
-    return new Book(title, author, pages, isRead)
+    return new Book(title, author, pageCount, isRead)
 }
 
 function addBook(event) {
@@ -74,13 +74,24 @@ function displayLibrary() {
     userLibrary.books.forEach((book) => {
         const bookCard = document.createElement('div');
         bookCard.classList.add('book-card');
-        bookCard.innerHTML += `
-            <h2>${book.title}</h2>
-            <h3>${book.author}</h3>
-            <p>${book.pages}</p>
-            <p>${book.isRead}</p>
-        `
-        libraryContainer.appendChild(bookCard);
+        const title = document.createElement('h2');
+        const author = document.createElement('h3');
+        const pageCount = document.createElement('p');
+        const checkBox = document.createElement('input');
+        checkBox.type = 'checkbox';
+        checkBox.disabled = true;
+
+        title.textContent = book.title;
+        author.textContent = book.author;
+        pageCount.textContent = book.pageCount;
+        checkBox.checked = book.isRead;
+
+        bookCard.appendChild(title);
+        bookCard.appendChild(author);
+        bookCard.appendChild(pageCount);
+        bookCard.appendChild(checkBox);
+
+        libraryContainer.appendChild(bookCard);        
     })
 }
 
@@ -92,7 +103,7 @@ function loadFromLocal() {
      const localStorageLibrary = localStorage.getItem('userLibrary');
      if (localStorageLibrary) {
         const localStorageBooks = JSON.parse(localStorageLibrary);
-        return localStorageBooks.map(book => new Book(book.title, book.author, book.pages, book.isRead));
+        return localStorageBooks.map(book => new Book(book.title, book.author, book.pageCount, book.isRead));
      }
      return;
 }
