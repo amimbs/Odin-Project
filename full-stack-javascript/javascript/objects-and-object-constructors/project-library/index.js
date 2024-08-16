@@ -1,9 +1,9 @@
 class Book {
-    constructor(title = '', author = '', pages = '', read = '') {
+    constructor(title = '', author = '', pages = '', isRead = false) {
         this.title = title;
         this.author = author;
         this.pages = pages;
-        this.read = read;
+        this.isRead = isRead;
     }
 }
 
@@ -44,8 +44,8 @@ function getUserBook() {
     const title = addForm.elements.title.value
     const author = addForm.elements.author.value
     const pages = addForm.elements.pageCount.value
-    const read = addForm.elements.read.value
-    return new Book(title, author, pages, read)
+    const isRead = addForm.elements.isRead.checked
+    return new Book(title, author, pages, isRead)
 }
 
 function addBook(event) {
@@ -78,8 +78,7 @@ function displayLibrary() {
             <h2>${book.title}</h2>
             <h3>${book.author}</h3>
             <p>${book.pages}</p>
-            <p>${book.read}</p>
-            <p>Read Status</p>
+            <p>${book.isRead}</p>
         `
         libraryContainer.appendChild(bookCard);
     })
@@ -93,7 +92,7 @@ function loadFromLocal() {
      const localStorageLibrary = localStorage.getItem('userLibrary');
      if (localStorageLibrary) {
         const localStorageBooks = JSON.parse(localStorageLibrary);
-        return localStorageBooks.map(book => new Book(book.title, book.author, book.pages, book.read));
+        return localStorageBooks.map(book => new Book(book.title, book.author, book.pages, book.isRead));
      }
      return;
 }
