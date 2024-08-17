@@ -22,6 +22,10 @@ class Library {
         this.books = this.books.filter((book) => book.title !== title);
     }
 
+    getBook(title) {
+        return this.books.find((book) => book.title === title);
+    }
+
     isInLibrary(newBook) {
         return this.books.some((book) => book.title === newBook.title)
     }
@@ -32,6 +36,10 @@ const formModal = document.getElementById("newBook-modal");
 const formOverlay = document.getElementById("overlay");
 const addForm = document.getElementById("newBook-Form");
 const libraryContainer = document.getElementById('library-container');
+
+// 
+let hasRead = false;
+// 
 
 function openAddModal() {
     addForm.reset();
@@ -84,20 +92,29 @@ function displayLibrary() {
         const checkBox = document.createElement('input');
         checkBox.type = 'checkbox';
         checkBox.disabled = true;
+        const isReadButton = document.createElement('button')
         const deleteButton = document.createElement('button');
 
         title.textContent = book.title;
         author.textContent = book.author;
         pageCount.textContent = book.pageCount;
         checkBox.checked = book.isRead;
+
+
+        isReadButton.textContent = 'Test'
+        // this needs to be dynamic. "Unread" = false, "Read"=true. Need to allow 2 way binding too
+
+
         deleteButton.textContent = 'Delete Book';
 
         deleteButton.onclick = handleDeleteBook;
+        isReadButton.onclick = handleIsRead;
 
         bookCard.appendChild(title);
         bookCard.appendChild(author);
         bookCard.appendChild(pageCount);
         bookCard.appendChild(checkBox);
+        bookCard.appendChild(isReadButton);
         bookCard.appendChild(deleteButton);
 
         libraryContainer.appendChild(bookCard);        
@@ -117,10 +134,21 @@ function loadFromLocal() {
      return;
 }
 
+function handleIsRead(event) {
+    const isReadButton = event.target;
+    const bookCard = isReadButton.parentElement;
+    const title = bookCard.querySelector('h2').innerHTML;
+
+    const book = userLibrary.getBook(title);
+    book.isRead = !book.isRead;
+    saveToLocal();
+    displayLibrary();
+}
+
 function handleDeleteBook(event) {
-    const button = event.target;
-    const bookCard = button.parentElement;
-    const title = (bookCard.querySelector('h2').innerHTML)
+    const deleteButton = event.target;
+    const bookCard = deleteButton.parentElement;
+    const title = bookCard.querySelector('h2').innerHTML
 
     userLibrary.removeBook(title);
     saveToLocal();
