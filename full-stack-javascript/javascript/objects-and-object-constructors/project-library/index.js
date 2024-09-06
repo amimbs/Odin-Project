@@ -37,10 +37,6 @@ const formOverlay = document.getElementById("overlay");
 const addForm = document.getElementById("newBook-Form");
 const libraryContainer = document.getElementById('library-container');
 
-// 
-let hasRead = false;
-// 
-
 function openAddModal() {
     addForm.reset();
     formModal.classList.add('active');
@@ -85,7 +81,6 @@ function displayLibrary() {
 
     userLibrary.books.forEach((book) => {
         const bookCard = document.createElement('div');
-        bookCard.classList.add('book-card');
         const title = document.createElement('h2');
         const author = document.createElement('h3');
         const pageCount = document.createElement('p');
@@ -95,15 +90,21 @@ function displayLibrary() {
         const isReadButton = document.createElement('button')
         const deleteButton = document.createElement('button');
 
+        bookCard.classList.add('book-card');
+        title.classList.add('book-card__header');
+        author.classList.add('book-card__author');
+        pageCount.classList.add('book-card__pageCount');
+        checkBox.classList.add('book-card__checkBox');
+        isReadButton.classList.add('book-card__button--primary');
+        deleteButton.classList.add('book-card__button--secondary');
+
+
         title.textContent = book.title;
         author.textContent = book.author;
         pageCount.textContent = book.pageCount;
         checkBox.checked = book.isRead;
 
-
-        isReadButton.textContent = 'Test'
-        // this needs to be dynamic. "Unread" = false, "Read"=true. Need to allow 2 way binding too
-
+        isReadButton.textContent = book.isRead ? 'Read' : 'Unread';
 
         deleteButton.textContent = 'Delete Book';
 
